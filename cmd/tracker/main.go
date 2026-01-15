@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/mrdevelopgo/fitTracker2/internal/actioninfo"
-	"github.com/mrdevelopgo/fitTracker2/internal/daysteps"
-	"github.com/mrdevelopgo/fitTracker2/internal/personaldata"
-	"github.com/mrdevelopgo/fitTracker2/internal/trainings"
+	"actioninfo"
+	"daysteps"
+	"personaldata"
+	"trainings"
 )
 
 func main() {
