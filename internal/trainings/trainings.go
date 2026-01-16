@@ -30,21 +30,35 @@ func (t *Training) Parse(datastring string) (err error) {
 		return errors.New("неверный формат данных: ожидается 3 значения")
 	}
 
-	// Парсим количество шагов (первый элемент)
-	steps, err := strconv.Atoi(strings.TrimSpace(parts[0]))
+	// Парсим количество шагов
+	stepsStr := strings.TrimSpace(parts[0])
+	steps, err := strconv.Atoi(stepsStr)
 	if err != nil {
 		return errors.New("неверный формат количества шагов")
 	}
+
+	// Проверяем, что шаги > 0
+	if steps <= 0 {
+		return errors.New("неверный формат количества шагов")
+	}
+
 	t.Steps = steps
 
 	// Сохраняем тип тренировки
 	t.TrainingType = strings.TrimSpace(parts[1])
 
-	// Парсим продолжительность (третий элемент)
-	duration, err := time.ParseDuration(strings.TrimSpace(parts[2]))
+	// Парсим продолжительность
+	durationStr := strings.TrimSpace(parts[2])
+	duration, err := time.ParseDuration(durationStr)
 	if err != nil {
 		return errors.New("неверный формат продолжительности")
 	}
+
+	// Проверяем, что продолжительность > 0
+	if duration <= 0 {
+		return errors.New("неверный формат продолжительности")
+	}
+
 	t.Duration = duration
 
 	return nil
@@ -82,7 +96,7 @@ func (t Training) ActionInfo() (string, error) {
 	}
 
 	// Форматируем продолжительность в часах с двумя знаками после запятой
-	durationHours := t.Duration.Hours()
+	// durationHours := t.Duration.Hours()
 
 	// Формируем результат
 	result := fmt.Sprintf(
@@ -90,9 +104,9 @@ func (t Training) ActionInfo() (string, error) {
 			"Длительность: %.2f ч.\n"+
 			"Дистанция: %.2f км.\n"+
 			"Скорость: %.2f км/ч\n"+
-			"Сожгли калорий: %.2f",
+			"Сожгли калорий: %.2f\n",
 		t.TrainingType,
-		durationHours,
+		t.Duration.Hours(),
 		distance,
 		speed,
 		calories,

@@ -26,21 +26,34 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 
 	// Проверяем, что получили 2 части (шаги и продолжительность)
 	if len(parts) != 2 {
-		return errors.New("неверный формат данных? отсутствует шаги и продолжительность)")
+		return errors.New("неверный формат данных, отсутствует шаги и продолжительность")
 	}
 
 	// Парсим количество шагов (первый элемент)
-	steps, err := strconv.Atoi(strings.TrimSpace(parts[0]))
+	stepsStr := parts[0]
+	steps, err := strconv.Atoi(stepsStr)
 	if err != nil {
 		return errors.New("неверный формат количества шагов")
 	}
+	// Проверяем, что шаги > 0
+	if steps <= 0 {
+		return errors.New("неверный формат количества шагов")
+	}
+
 	ds.Steps = steps
 
-	// Парсим продолжительность (второй элемент)
-	duration, err := time.ParseDuration(strings.TrimSpace(parts[1]))
+	// Парсим продолжительность (второй элемент), убираем пробелы
+	durationStr := strings.TrimSpace(parts[1])
+	duration, err := time.ParseDuration(durationStr)
 	if err != nil {
 		return errors.New("неверный формат продолжительности")
 	}
+
+	// Проверяем, что продолжительность > 0
+	if duration <= 0 {
+		return errors.New("неверный формат продолжительности")
+	}
+
 	ds.Duration = duration
 
 	return nil
@@ -64,7 +77,7 @@ func (ds DaySteps) ActionInfo() (string, error) {
 	result := fmt.Sprintf(
 		"Количество шагов: %d.\n"+
 			"Дистанция составила %.2f км.\n"+
-			"Вы сожгли %.2f ккал.",
+			"Вы сожгли %.2f ккал.\n",
 		ds.Steps,
 		distance,
 		calories,

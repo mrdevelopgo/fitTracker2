@@ -34,8 +34,6 @@ func Info(dataset []string, dp DataParser) {
 		}
 
 		// Выводим разделитель и информацию
-		fmt.Println("=== Результат обработки ===")
-		fmt.Println(info)
-		fmt.Println() // пустая строка для разделения
+		fmt.Printf("=== Результат обработки ===\n%s\n", info)
 	}
 }
