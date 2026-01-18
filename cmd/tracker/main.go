@@ -37,7 +37,7 @@ func main() {
 
 	actioninfo.Info(input, &daySteps)
 
-	// // тренировки
+	// тренировки
 	actions := []string{
 		"3456,Ходьба,3h00m",
 		"something is wrong",
@@ -52,7 +52,7 @@ func main() {
 		Personal: person,
 	}
 
-	fmt.Println("Журнал тренировок")
+	fmt.Println("\nЖурнал тренировок")
 
 	trains.Print()
 

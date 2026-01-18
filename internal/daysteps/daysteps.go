@@ -26,18 +26,19 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 
 	// Проверяем, что получили 2 части (шаги и продолжительность)
 	if len(parts) != 2 {
-		return errors.New("неверный формат данных, отсутствует шаги и продолжительность")
+		return errors.New("invalid data format: expected 2 values")
 	}
 
 	// Парсим количество шагов (первый элемент)
 	stepsStr := parts[0]
 	steps, err := strconv.Atoi(stepsStr)
 	if err != nil {
-		return errors.New("неверный формат количества шагов")
+		return err
 	}
+
 	// Проверяем, что шаги > 0
 	if steps <= 0 {
-		return errors.New("неверный формат количества шагов")
+		return errors.New("steps must be positive")
 	}
 
 	ds.Steps = steps
@@ -46,12 +47,12 @@ func (ds *DaySteps) Parse(datastring string) (err error) {
 	durationStr := strings.TrimSpace(parts[1])
 	duration, err := time.ParseDuration(durationStr)
 	if err != nil {
-		return errors.New("неверный формат продолжительности")
+		return err
 	}
 
 	// Проверяем, что продолжительность > 0
 	if duration <= 0 {
-		return errors.New("неверный формат продолжительности")
+		return fmt.Errorf("duration must be positive")
 	}
 
 	ds.Duration = duration

@@ -17,16 +17,16 @@ func WalkingSpentCalories(steps int, weight, height float64, duration time.Durat
 	// TODO: реализовать функцию
 	// Проверяем входные параметры на корректность
 	if steps <= 0 {
-		return 0, errors.New("количество шагов должно быть положительным")
+		return 0, errors.New("steps must be positive")
 	}
 	if weight <= 0 {
-		return 0, errors.New("вес должен быть положительным")
+		return 0, errors.New("weight must be positive")
 	}
 	if height <= 0 {
-		return 0, errors.New("рост должен быть положительным")
+		return 0, errors.New("height must be positive")
 	}
 	if duration <= 0 {
-		return 0, errors.New("продолжительность должна быть положительной")
+		return 0, errors.New("duration must be positive")
 	}
 
 	// Рассчитываем среднюю скорость
@@ -48,16 +48,16 @@ func RunningSpentCalories(steps int, weight, height float64, duration time.Durat
 	// TODO: реализовать функцию расчёта калорий потраченных при беге
 	// Проверяем входные параметры на корректность
 	if steps <= 0 {
-		return 0, errors.New("количество шагов должно быть положительным")
+		return 0, errors.New("steps must be positive")
 	}
 	if weight <= 0 {
-		return 0, errors.New("вес должен быть положительным")
+		return 0, errors.New("weight must be positive")
 	}
 	if height <= 0 {
-		return 0, errors.New("рост должен быть положительным")
+		return 0, errors.New("height must be positive")
 	}
 	if duration <= 0 {
-		return 0, errors.New("продолжительность должна быть положительной")
+		return 0, errors.New("duration must be positive")
 	}
 
 	// Рассчитываем среднюю скорость
