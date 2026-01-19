@@ -21,7 +21,7 @@ func Info(dataset []string, dp DataParser) {
 		err := dp.Parse(data)
 		if err != nil {
 			// Логируем ошибку и переходим к следующей строке
-			log.Printf("Ошибка парсинга строки %d: %v", i+1, err)
+			log.Printf("String parsing error %d: %v", i+1, err)
 			continue
 		}
 
@@ -29,12 +29,12 @@ func Info(dataset []string, dp DataParser) {
 		info, err := dp.ActionInfo()
 		if err != nil {
 			// Логируем ошибку
-			log.Printf("Ошибка получения информации для строки %d: %v", i+1, err)
+			log.Printf("Error getting information for line %d: %v", i+1, err)
 			continue
 		}
 
 		// Выводим разделитель и информацию
-		// Тут у меня тупик в тестах, он постоянно ругается на вывод. Не знаю как быть.
-		fmt.Printf("=== Результат обработки ===\n%s\n", info)
+		// Все равно тесты падают.
+		fmt.Print(info)
 	}
 }
