@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/Yandex-Practicum/tracker/internal/actioninfo"
-	"github.com/Yandex-Practicum/tracker/internal/daysteps"
-	"github.com/Yandex-Practicum/tracker/internal/personaldata"
-	"github.com/Yandex-Practicum/tracker/internal/trainings"
+	"github.com/mrdevelopgo/fitTracker2/internal/actioninfo"
+	"github.com/mrdevelopgo/fitTracker2/internal/daysteps"
+	"github.com/mrdevelopgo/fitTracker2/internal/personaldata"
+	"github.com/mrdevelopgo/fitTracker2/internal/trainings"
 )
 
 func main() {
@@ -37,7 +37,7 @@ func main() {
 
 	actioninfo.Info(input, &daySteps)
 
-	// // тренировки
+	// тренировки
 	actions := []string{
 		"3456,Ходьба,3h00m",
 		"something is wrong",
@@ -52,7 +52,7 @@ func main() {
 		Personal: person,
 	}
 
-	fmt.Println("Журнал тренировок")
+	fmt.Println("\nЖурнал тренировок")
 
 	trains.Print()
 
